@@ -1,0 +1,50 @@
+JGWCAConstants
+==============
+
+What is this?
+A Maven project containing a Java port of the AutoIt GWCAConstants.
+
+For whom is this?
+The GWCA users out here that are bored and want to get rid of AutoIt.
+
+Can it do the same as the AutoIt version?
+No. About 90% of all operations are implemented, 85% are tested and 75% works. What Java can't do is read and write from memory, so the chat commands (and others) that do that are unsupported (as of now?).
+
+So what's broken, unimplemented or untested?
+Not implemented: You can find the list in the " be.demmel.fun.jgwcaconstants.bll.GWCAOperation" enum.
+Broken: Check the " be.demmel.fun.jgwcaconstants.MainTestingAllFunctions " class that was used to test all implemented operations. Things marked as "//BROKEN" are well... broken.
+Untested: I only had a trial account at my disposal to test things, so heroes, some trade functions, .... are untested. Please see the class cited above for things that are marked as "//TODO: test:".
+
+What's next?
+- Fix the operations inside GWCA that don't work very well.
+- Fix the protocol so that it becomes "dynamic" (as in every operation has its own format) so that we can send things using strings through the named pipe instead of the workaround with the memory reading/writing.
+- Find a way to list the Windows processes so that this util can be used in GUIs.
+- Write a tutorial that controls multiple accounts in multiple threads.
+- Improve the code (as in: add documentation, use more OO, add logs, ...)
+
+How to use?
+No shell script is provided so the project must be launched with Maven using the exec plugin like this: "mvn clean package exec:java". The main class to be launched is configurable in the POM.
+
+Oh and of course you need a working GWCA DLL injected into the Guild Wars process (I won't provide one).
+I provided a few simple "tutorials" to get you started. The " Tutorial4 " main class will kill the first mob it finds outside of Ascalon City (pre-searing).
+
+The advantages?
+A copy of the documentation that was written inside the code:
+
+This is like the AutoIt GWCAConstants, except that every operation has its function, plus:
+- the API enforces you to send the right parameters with the right types
+- the API encapsulated some fixed list of values (like Rarity, Dye, Hero,...) into enums to enforce a correct value
+- the API gives you the correct return
+- you get to see the documentation straight into the IDE
+- you can easily debug your code.
+
+Plus:
+- Java can multithread... so you could write a monitoring thread that monitors the HP of every GuildWarsInstance and trigger an event that makes your healer heal/purge/... when needed.
+
+Why did I do this?
+I'm trying to save the ignorants from AutoIt... 
+I wanted to prove you that Java can (for the most part) replace AutoIt and that it's easier to write bots that control complete parties with it.
+
+Anything else?
+
+Yes, it comes with a GWCACommander (that was only tested with 3 operations or something, but it should work) which is named JCommander in this project.
